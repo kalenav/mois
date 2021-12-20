@@ -1,0 +1,69 @@
+scp_program -> get_set_of_nodes_sets_of_input_graphs
+(*
+  -> rrel_params: ...
+  (*
+    -> rrel_1: rrel_in: _kp_var_set_of_graphs;;
+    -> rrel_2: rrel_out: _kp_var_set_of_sets_inner;;
+  *);;
+  -> rrel_operators: ...
+  (*
+    -> rrel_init: ..init_set_of_sets
+    (*
+      <- genEl;;
+      -> rrel_1: rrel_assign: rrel_scp_var: rrel_node: rrel_const: _kp_var_set_of_sets_inner;;
+      => nrel_goto: ..copy_set_of_graphs;;
+    *);;
+    -> ..copy_set_of_graphs
+    (*
+      <- searchSetStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_graphs;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_graph_inner;;
+      -> rrel_set_3: rrel_assign: rrel_scp_var: _kp_var_set_of_graphs_copy;;
+      => nrel_then: ..cycle_operator_1_get_current_graph;;
+      => nrel_else: end;;
+    *);;
+    -> ..cycle_operator_1_get_current_graph
+    (*
+      <- searchElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_graphs_copy;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_graph_inner;;
+      => nrel_then: ..cycle_operator_2_get_current_nodes_set;;
+      => nrel_else: end;;
+    *);;
+    -> ..cycle_operator_2_get_current_nodes_set
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: get_graph_nodes_set;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_inner;;
+        -> rrel_2: rrel_assign: rrel_scp_var: _kp_var_set_inner;;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc_get_nodes_set;;
+      => nrel_goto: ..wait;;
+    *);;
+    -> ..wait
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _proc_get_nodes_set;;
+      => nrel_goto: ..cycle_operator_3_append_curr_nodes_set_to_output;;
+    *);;
+    -> ..cycle_operator_3_append_curr_nodes_set_to_output
+    (*
+      <- genElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_sets_inner;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _kp_arc;;
+      -> rrel_3: rrel_fixed: rrel_scp_var: _kp_var_set_inner;;
+      => nrel_goto: ..cycle_operator_4_erase_edge_to_current_graph;;
+    *);;
+    -> ..cycle_operator_4_erase_edge_to_current_graph
+    (*
+      <- eraseEl;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: rrel_erase: _arc;;
+      => nrel_goto: ..cycle_operator_1_get_current_graph;;
+    *);;
+    -> end;;
+  *);;
+*);;

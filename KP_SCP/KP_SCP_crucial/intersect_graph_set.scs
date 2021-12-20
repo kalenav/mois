@@ -1,0 +1,291 @@
+scp_program -> intersect_graph_set
+(*
+  -> rrel_params: ...
+  (*
+    -> rrel_1: rrel_in: _kp_var_graph_set;;
+    -> rrel_2: rrel_in: _kp_var_link_inner;;
+  *);;
+  -> rrel_operators: ...
+  (*
+    -> rrel_init: ..init_intersection_graph
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: create_empty_graph_with_identifier;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_link_inner;;
+        -> rrel_2: rrel_assign: rrel_scp_var: _kp_var_graph_intersection;;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..wait_init_intersection_graph;;
+    *);;
+    -> ..wait_init_intersection_graph
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..init_set_of_node_sets;;
+    *);;
+    -> ..init_set_of_node_sets
+    (*
+      <- genEl;;
+      -> rrel_1: rrel_assign: rrel_scp_var: rrel_node: rrel_const: _kp_var_set_of_node_sets;;
+      => nrel_goto: ..init_set_of_edge_sets;;
+    *);;
+    -> ..init_set_of_edge_sets
+    (*
+      <- genEl;;
+      -> rrel_1: rrel_assign: rrel_scp_var: rrel_node: rrel_const: _kp_var_set_of_edge_sets;;
+      => nrel_goto: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_preparatory_operator_copy_graph_set;;
+    *);;
+    -> ..get_set_of_node_sets_and_set_of_edge_sets_cycle_preparatory_operator_copy_graph_set
+    (*
+      <- searchSetStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_set;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_graph_inner;;
+      -> rrel_set_3: rrel_assign: rrel_scp_var: _kp_var_graph_set_copy;;
+      => nrel_then: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_1_get_current_graph;;
+      => nrel_else: end;;
+    *);;
+    -> ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_1_get_current_graph
+    (*
+      <- searchElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_set_copy;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_graph_inner;;
+      => nrel_then: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_2_get_current_graph_nodes_set;;
+      => nrel_else: ..get_base_node_set;;
+    *);;
+    -> ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_2_get_current_graph_nodes_set
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: get_graph_nodes_set;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_inner;;
+        -> rrel_2: rrel_assign: rrel_scp_var: _kp_var_node_set_inner;;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_3_wait;;
+    *);;
+    -> ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_3_wait
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: _proc_intersection;;
+      => nrel_goto: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_4_append_curr_node_set;;
+    *);;
+    -> ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_4_append_curr_node_set
+    (*
+      <- genElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_node_sets;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc_to_set;;
+      -> rrel_3: rrel_fixed: rrel_scp_var: _kp_var_node_set_inner;;
+      => nrel_goto: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_5_get_current_graph_edge_set;;
+    *);;
+    -> ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_5_get_current_graph_edge_set
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: get_graph_edges_set;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_inner;;
+        -> rrel_2: rrel_assign: rrel_scp_var: _kp_var_edge_set_inner;;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_6_wait;;
+    *);;
+    -> ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_6_wait
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: _proc_intersection;;
+      => nrel_goto: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_7_append_curr_edge_set;;
+    *);;
+    -> ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_7_append_curr_edge_set
+    (*
+      <- genElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_edge_sets;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc_to_set;;
+      -> rrel_3: rrel_fixed: rrel_scp_var: _kp_var_edge_set_inner;;
+      => nrel_goto: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_8_erase_edge_to_current_graph;;
+    *);;
+    -> ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_8_erase_edge_to_current_graph
+    (*
+      <- eraseEl;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: rrel_pos_const_perm: rrel_erase: _arc;;
+      => nrel_goto: ..get_set_of_node_sets_and_set_of_edge_sets_cycle_operator_1_get_current_graph;;
+    *);;
+    -> ..get_base_node_set
+    (*
+      <- searchElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_node_sets;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_intersection_base_node_set;;
+      => nrel_then: ..copy_base_node_set;;
+      => nrel_else: end;;
+    *);;
+    -> ..copy_base_node_set
+    (*
+      <- searchSetStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_intersection_base_node_set;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_node_inner;;
+      -> rrel_set_3: rrel_assign: rrel_scp_var: _kp_var_intersection_base_node_set_copy;;
+      => nrel_then: ..node_cycle_operator_1_get_current_node;;
+      => nrel_else: end;;
+    *);;
+    -> ..node_cycle_operator_1_get_current_node
+    (*
+      <- searchElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_intersection_base_node_set_copy;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc_to_node;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_node_inner;;
+      => nrel_then: ..node_cycle_operator_2_check_if_node_is_in_all_input_graphs;;
+      => nrel_else: ..get_base_edge_set;;
+    *);;
+    -> ..node_cycle_operator_2_check_if_node_is_in_all_input_graphs
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: check_if_element_is_in_all_input_sets;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_node_sets;;
+        -> rrel_2: rrel_fixed: rrel_scp_var: _kp_var_node_inner;;
+        -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_link_inner_2;;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..node_cycle_operator_3_wait;;
+    *);;
+    -> ..node_cycle_operator_3_wait
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..node_cycle_operator_4_check_operator_2_output;;
+    *);;
+    -> ..node_cycle_operator_4_check_operator_2_output
+    (*
+      <- stringIfEq;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_link_inner_2;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: [1];;
+      => nrel_then: ..node_cycle_operator_5_append_node_to_intersection_graph;;
+      => nrel_else: ..node_cycle_operator_7_erase_edge_to_current_node;;
+    *);;
+    -> ..node_cycle_operator_5_append_node_to_intersection_graph
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: append_node_to_graph;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_intersection;;
+        -> rrel_2: rrel_fixed: rrel_scp_var: _kp_var_node_inner;;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..node_cycle_operator_6_wait;;
+    *);;
+    -> ..node_cycle_operator_6_wait
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..node_cycle_operator_7_erase_edge_to_current_node;;
+    *);;
+    -> ..node_cycle_operator_7_erase_edge_to_current_node
+    (*
+      <- eraseEl;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: rrel_erase: _arc_to_node;;
+      => nrel_goto: ..node_cycle_operator_1_get_current_node;;
+    *);;
+    -> ..get_base_edge_set
+    (*
+      <- searchElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_edge_sets;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_intersection_base_edge_set;;
+      => nrel_then: ..copy_base_edge_set;;
+      => nrel_else: end;;
+    *);;
+    -> ..copy_base_edge_set
+    (*
+      <- searchSetStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_intersection_base_edge_set;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_edge_inner;;
+      -> rrel_set_3: rrel_assign: rrel_scp_var: _kp_var_intersection_base_edge_set_copy;;
+      => nrel_then: ..edge_cycle_operator_1_get_current_edge;;
+      => nrel_else: end;;
+    *);;
+    -> ..edge_cycle_operator_1_get_current_edge
+    (*
+      <- searchElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_intersection_base_edge_set_copy;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc_to_edge;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_edge_inner;;
+      => nrel_then: ..edge_cycle_operator_2_check_if_edge_is_in_all_input_graphs;;
+      => nrel_else: end;;
+    *);;
+    -> ..edge_cycle_operator_2_check_if_edge_is_in_all_input_graphs
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: check_if_element_is_in_all_input_sets;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_edge_sets;;
+        -> rrel_2: rrel_fixed: rrel_scp_var: _kp_var_edge_inner;;
+        -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_link_inner_2;;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..edge_cycle_operator_3_wait;;
+    *);;
+    -> ..edge_cycle_operator_3_wait
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..edge_cycle_operator_4_check_operator_2_output;;
+    *);;
+    -> ..edge_cycle_operator_4_check_operator_2_output
+    (*
+      <- stringIfEq;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_link_inner_2;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: [1];;
+      => nrel_then: ..edge_cycle_operator_5_append_edge_to_intersection_graph;;
+      => nrel_else: ..edge_cycle_operator_7_erase_edge_to_current_edge;;
+    *);;
+    -> ..edge_cycle_operator_5_append_edge_to_intersection_graph
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: append_edge_to_graph;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_intersection;;
+        -> rrel_2: rrel_fixed: rrel_scp_var: _kp_var_edge_inner;;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..edge_cycle_operator_6_wait;;
+    *);;
+    -> ..edge_cycle_operator_6_wait
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _proc_intersection;;
+      => nrel_goto: ..edge_cycle_operator_7_erase_edge_to_current_edge;;
+    *);;
+    -> ..edge_cycle_operator_7_erase_edge_to_current_edge
+    (*
+      <- eraseEl;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: rrel_erase: _arc_to_edge;;
+      => nrel_goto: ..edge_cycle_operator_1_get_current_edge;;
+    *);;
+    -> end;;
+  *);;
+*);;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

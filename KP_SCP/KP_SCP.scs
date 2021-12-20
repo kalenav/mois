@@ -1,0 +1,51 @@
+end <- return;;
+
+test_graphs_1
+-> G1_1;
+-> G1_2;;
+
+test_graphs_2
+-> G2_1;
+-> G2_2;;
+
+test_graphs_3
+-> G3_1;
+-> G3_2;
+-> G3_3;;
+
+test_graphs_4
+-> G4_1;
+-> G4_2;
+-> G4_3;;
+
+test_graphs_5
+-> G5_1;
+-> G5_2;
+-> G5_3;
+-> G5_4;;
+
+scp_program -> proc_kp
+(*
+  -> rrel_params: ...;;
+  -> rrel_operators: ...
+  (*
+    -> rrel_init: ..intersect
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: intersect_graph_set;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_const: test_graphs_1;;
+        -> rrel_2: rrel_fixed: rrel_scp_const: [test_intersection];;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc;;
+      => nrel_goto: end;;
+    *);;
+    -> end;;
+  *);;
+*);;
+
+
+
+
+

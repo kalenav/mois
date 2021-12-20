@@ -1,0 +1,102 @@
+scp_program -> create_empty_graph_with_identifier
+(*
+  -> rrel_params: ...
+  (*
+    -> rrel_1: rrel_in: _kp_var_link_inner;;
+    -> rrel_2: rrel_out: _kp_var_graph_inner;;
+  *);;
+  -> rrel_operators: ...
+  (*
+    -> rrel_init: ..create_graph
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: create_const_node_with_identifier;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_link_inner;;
+        -> rrel_2: rrel_assign: rrel_scp_var: _kp_var_graph_inner;;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc_create_graph;;
+      => nrel_goto: ..get_nodes_set_idtf;;
+    *);;
+    -> ..get_nodes_set_idtf
+    (*
+      <- contStringConcat;;
+      -> rrel_1: rrel_assign: rrel_scp_var: _link_temp;;
+      -> rrel_2: rrel_fixed: rrel_scp_var: _kp_var_link_inner;;
+      -> rrel_3: rrel_fixed: rrel_scp_const: [_nodes];;
+      => nrel_goto: ..create_nodes_set;;
+    *);;
+    -> ..create_nodes_set
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: create_const_node_with_identifier;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _link_temp;;
+        -> rrel_2: rrel_assign: rrel_scp_var: _kp_var_set_inner;;
+      *);;
+      -> rrel_3: rrel_fixed: rrel_scp_const: _proc_create_nodes_set;;
+      => nrel_goto: ..wait_create_nodes_set;;
+    *);;
+    -> ..wait_create_nodes_set
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _proc_create_nodes_set;;
+      => nrel_goto: ..wait_create_graph;;
+    *);;
+    -> ..wait_create_graph
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _proc_create_graph;;
+      => nrel_goto: ..create_edge_to_nodes_set;;
+    *);;
+    -> ..create_edge_to_nodes_set
+    (*
+      <- genElStr5;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_inner;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc1;;
+      -> rrel_3: rrel_fixed: rrel_scp_var: _kp_var_set_inner;;
+      -> rrel_4: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc2;;
+      -> rrel_5: rrel_fixed: rrel_scp_const: rrel_nodes;;
+      => nrel_goto: ..get_arcs_set_idtf;;
+    *);;
+    -> ..get_arcs_set_idtf
+    (*
+      <- contStringConcat;;
+      -> rrel_1: rrel_assign: rrel_scp_var: _link_temp;;
+      -> rrel_2: rrel_fixed: rrel_scp_var: _kp_var_link_inner;;
+      -> rrel_3: rrel_fixed: rrel_scp_const: [_arcs];;
+      => nrel_goto: ..create_arcs_set;;
+    *);;
+    -> ..create_arcs_set
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: create_const_node_with_identifier;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_var: _link_temp;;
+        -> rrel_2: rrel_assign: rrel_scp_var: _kp_var_set_inner;;
+      *);;
+      -> rrel_3: rrel_fixed: rrel_scp_const: _proc_create_arcs_set;;
+      => nrel_goto: ..wait_create_arcs_set;;
+    *);;
+    -> ..wait_create_arcs_set
+    (*
+      <- waitReturn;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _proc_create_arcs_set;;
+      => nrel_goto: ..create_edge_to_arcs_set;;
+    *);;
+    -> ..create_edge_to_arcs_set
+    (*
+      <- genElStr5;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_inner;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc1;;
+      -> rrel_3: rrel_fixed: rrel_scp_var: _kp_var_set_inner;;
+      -> rrel_4: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc2;;
+      -> rrel_5: rrel_fixed: rrel_scp_const: rrel_arcs;;
+      => nrel_goto: end;;
+    *);;
+    -> end;;
+  *);;
+*);;

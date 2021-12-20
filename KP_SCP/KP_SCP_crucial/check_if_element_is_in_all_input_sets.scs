@@ -1,0 +1,61 @@
+scp_program -> check_if_element_is_in_all_input_sets
+(*
+  -> rrel_params: ...
+  (*
+    -> rrel_1: rrel_in: _kp_var_set_of_sets_inner;;
+    -> rrel_2: rrel_in: _kp_var_general_inner;;
+    -> rrel_3: rrel_out: _kp_var_bool_inner;;
+  *);;
+  -> rrel_operators: ...
+  (*
+    -> rrel_init: ..init_bool_var
+    (*
+      <- varAssign;;
+      -> rrel_1: rrel_assign: rrel_scp_var: _kp_var_bool_inner;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: [1];;
+      => nrel_goto: ..copy_set_of_sets;;
+    *);;
+    -> ..copy_set_of_sets
+    (*
+      <- searchSetStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_sets_inner;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_set_inner;;
+      -> rrel_set_3: rrel_assign: rrel_scp_var: _kp_var_set_of_sets_copy;;
+      => nrel_then: ..cycle_operator_1_get_current_set;;
+      => nrel_else: end;;
+    *);; 
+    -> ..cycle_operator_1_get_current_set
+    (*
+      <- searchElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_of_sets_copy;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc_to_set;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_set_inner;;
+      => nrel_then: ..cycle_operator_2_check_if_element_is_in_current_set;;
+      => nrel_else: end;;
+    *);;
+    -> ..cycle_operator_2_check_if_element_is_in_current_set
+    (*
+      <- searchElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_set_inner;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc_to_el;;
+      -> rrel_3: rrel_fixed: rrel_scp_var: _kp_var_general_inner;;
+      => nrel_then: ..cycle_operator_3_erase_edge_to_current_set;;
+      => nrel_else: ..element_is_not_in_all_input_sets;;
+    *);;
+    -> ..cycle_operator_3_erase_edge_to_current_set
+    (*
+      <- eraseEl;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: rrel_erase: _arc_to_set;;
+      => nrel_goto: ..cycle_operator_1_get_current_set;;
+    *);;
+    -> ..element_is_not_in_all_input_sets
+    (*
+      <- varAssign;;
+      -> rrel_1: rrel_assign: rrel_scp_var: _kp_var_bool_inner;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+      => nrel_goto: end;;
+    *);;
+    -> end;;
+  *);;
+*);;
