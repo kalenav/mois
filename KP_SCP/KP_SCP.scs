@@ -29,14 +29,62 @@ scp_program -> proc_kp
   -> rrel_params: ...;;
   -> rrel_operators: ...
   (*
-    -> rrel_init: ..intersect
+    -> rrel_init: ..test_1
     (*
       <- call;;
       -> rrel_1: rrel_fixed: rrel_scp_const: intersect_graph_set;;
       -> rrel_2: rrel_fixed: rrel_scp_const: ...
       (*
         -> rrel_1: rrel_fixed: rrel_scp_const: test_graphs_1;;
-        -> rrel_2: rrel_fixed: rrel_scp_const: [test_intersection];;
+        -> rrel_2: rrel_fixed: rrel_scp_const: [test_intersection_1];;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc;;
+      => nrel_goto: ..test_2;;
+    *);;
+    -> ..test_2
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: intersect_graph_set;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_const: test_graphs_2;;
+        -> rrel_2: rrel_fixed: rrel_scp_const: [test_intersection_2];;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc;;
+      => nrel_goto: ..test_3;;
+    *);;
+    -> ..test_3
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: intersect_graph_set;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_const: test_graphs_3;;
+        -> rrel_2: rrel_fixed: rrel_scp_const: [test_intersection_3];;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc;;
+      => nrel_goto: ..test_4;;
+    *);;
+    -> ..test_4
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: intersect_graph_set;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_const: test_graphs_4;;
+        -> rrel_2: rrel_fixed: rrel_scp_const: [test_intersection_4];;
+      *);;
+      -> rrel_3: rrel_assign: rrel_scp_var: _proc;;
+      => nrel_goto: ..test_5;;
+    *);;
+    -> ..test_5
+    (*
+      <- call;;
+      -> rrel_1: rrel_fixed: rrel_scp_const: intersect_graph_set;;
+      -> rrel_2: rrel_fixed: rrel_scp_const: ...
+      (*
+        -> rrel_1: rrel_fixed: rrel_scp_const: test_graphs_5;;
+        -> rrel_2: rrel_fixed: rrel_scp_const: [test_intersection_5];;
       *);;
       -> rrel_3: rrel_assign: rrel_scp_var: _proc;;
       => nrel_goto: end;;
