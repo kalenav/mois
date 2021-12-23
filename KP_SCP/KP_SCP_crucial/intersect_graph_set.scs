@@ -219,7 +219,7 @@ scp_program -> intersect_graph_set
       -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc_to_edge;;
       -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_edge_inner;;
       => nrel_then: ..edge_cycle_operator_2_check_if_edge_is_in_all_input_graphs;;
-      => nrel_else: end;;
+      => nrel_else: ..create_assymetry_node_for_relation;;
     *);;
     -> ..edge_cycle_operator_2_check_if_edge_is_in_all_input_graphs
     (*
@@ -271,6 +271,54 @@ scp_program -> intersect_graph_set
       <- eraseEl;;
       -> rrel_1: rrel_fixed: rrel_scp_var: rrel_erase: _arc_to_edge;;
       => nrel_goto: ..edge_cycle_operator_1_get_current_edge;;
+    *);;
+    -> ..create_assymetry_node_for_relation
+    (*
+      <- genEl;;
+      -> rrel_1: rrel_assign: rrel_scp_var: rrel_node: rrel_const: rrel_tuple: _assymetry_node;;
+      => nrel_goto: ..copy_set_of_graphs;;
+    *);;
+    -> ..copy_set_of_graphs
+    (*
+      <- searchSetStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_set;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_graph;;
+      -> rrel_set_3: rrel_assign: rrel_scp_var: _kp_var_graph_set_copy;;
+      => nrel_goto: ..append_graphs_to_assymetry_node_operator_1_get_current_graph;;
+    *);;
+    -> ..append_graphs_to_assymetry_node_operator_1_get_current_graph
+    (*
+      <- searchElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _kp_var_graph_set_copy;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc_to_graph;;
+      -> rrel_3: rrel_assign: rrel_scp_var: _kp_var_graph;;
+      => nrel_then: ..append_graphs_to_assymetry_node_operator_2_append_current_graph_to_assymetry_node;;
+      => nrel_else: ..create_relation_from_assymetry_node_to_intersection_graph;;
+    *);;
+    -> ..append_graphs_to_assymetry_node_operator_2_append_current_graph_to_assymetry_node
+    (*
+      <- genElStr3;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _assymetry_node;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc;;
+      -> rrel_3: rrel_fixed: rrel_scp_var: _kp_var_graph;;
+      => nrel_goto: ..append_graphs_to_assymetry_node_operator_3_erase_edge_to_current_graph;;
+    *);;
+    -> ..append_graphs_to_assymetry_node_operator_3_erase_edge_to_current_graph
+    (*
+      <- eraseEl;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: rrel_erase: _arc_to_graph;;
+      => nrel_goto: ..append_graphs_to_assymetry_node_operator_1_get_current_graph;;
+    *);;
+    -> ..create_relation_from_assymetry_node_to_intersection_graph
+    (*
+      <- genElStr5;;
+      -> rrel_1: rrel_fixed: rrel_scp_var: _assymetry_node;;
+      -> rrel_2: rrel_assign: rrel_scp_var: rrel_common: rrel_const: _arc;;
+      -> rrel_3: rrel_fixed: rrel_scp_var: _kp_var_graph_intersection;;
+      -> rrel_4: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc2;;
+      -> rrel_5: rrel_fixed: rrel_scp_const: nrel_intersection;;
+      => nrel_goto: end;;
     *);;
     -> end;;
   *);;
